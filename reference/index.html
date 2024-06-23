@@ -391,7 +391,7 @@
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <p>Consider the function <span class="arithmatex">\(-x^{3}+\sin{t}\)</span></p>
+    <p>Consider the function <span class="arithmatex">\(func(x,t) = -x^{3}+\sin{t}\)</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">euler</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">20.0</span><span class="p">)</span>
 <span class="go">[ 0.          0.          0.26439534  0.71189381  1.04830651  0.89488942</span>
 <span class="go">0.77464602  0.52141013  0.17502349 -0.28921312 -0.80263945 -0.97897518</span>
@@ -508,7 +508,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Euler method $x_i=x_{i-1}+h\cdot f(x_i)$</span>
 
 <span class="sd">    Examples:</span>
-<span class="sd">        Consider the function $-x^{3}+\sin{t}$</span>
+<span class="sd">        Consider the function $func(x,t) = -x^{3}+\sin{t}$</span>
 <span class="sd">        &gt;&gt;&gt; euler(func,0.0,np.linspace(0.0,10.0,20.0)</span>
 <span class="sd">        [ 0.          0.          0.26439534  0.71189381  1.04830651  0.89488942</span>
 <span class="sd">        0.77464602  0.52141013  0.17502349 -0.28921312 -0.80263945 -0.97897518</span>
@@ -676,7 +676,7 @@
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <p>Consider the function <span class="arithmatex">\(-x^{3}+\sin{t}\)</span></p>
+    <p>Consider the function <span class="arithmatex">\(func(x,t) = -x^{3}+\sin{t}\)</span></p>
     <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">rk2</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">20.0</span><span class="p">)</span>
 <span class="go">[ 0.          0.13691106  0.50040599  0.83221858  0.89696773  0.83638552</span>
 <span class="go">0.684369    0.42791827  0.0377284  -0.46988042 -0.7896376  -0.78706438</span>
@@ -796,7 +796,7 @@
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Runge-Kutta 2 method $x(t+h)=x(t)+hf(x+{hf(x,t)\over 2},t+{h\over 2})$</span>
 
 <span class="sd">    Examples:</span>
-<span class="sd">        Consider the function $-x^{3}+\sin{t}$</span>
+<span class="sd">        Consider the function $func(x,t) = -x^{3}+\sin{t}$</span>
 <span class="sd">        &gt;&gt;&gt; rk2(func,0.0,np.linspace(0.0,10.0,20.0)</span>
 <span class="sd">        [ 0.          0.13691106  0.50040599  0.83221858  0.89696773  0.83638552</span>
 <span class="sd">        0.684369    0.42791827  0.0377284  -0.46988042 -0.7896376  -0.78706438</span>
@@ -846,13 +846,13 @@
 
 
 <p><span class="doc-section-title">Examples:</span></p>
-    <p>Consider the function <span class="arithmatex">\(-x^{3}+\sin{t}\)</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">rk4</span><span class="p">(</span><span class="n">func</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="n">np</span><span class="p">,</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">20.0</span><span class="p">)</span>
-<span class="go">[ 0.          0.13505937  0.48487586  0.81979626  0.93102462  0.88144889</span>
-<span class="go">0.72370945  0.46026479  0.06848691 -0.42773679 -0.78084333 -0.83096351</span>
-<span class="go">-0.6993985  -0.43991777 -0.04506765  0.45089026  0.79057875  0.83047637</span>
-<span class="go">0.69376603  0.43014634]</span>
-</code></pre></div>
+    <p>Consider the function <span class="arithmatex">\(func(x,t) = -x^{3}+\sin{t}\)</span></p>
+      <pre><code>&gt;&gt;&gt; rk4(func,0.0,np,linspace(0.0,10.0,20.0)
+[ 0.          0.13505937  0.48487586  0.81979626  0.93102462  0.88144889
+0.72370945  0.46026479  0.06848691 -0.42773679 -0.78084333 -0.83096351
+-0.6993985  -0.43991777 -0.04506765  0.45089026  0.79057875  0.83047637
+0.69376603  0.43014634]
+</code></pre>
 
 
 <p><span class="doc-section-title">Parameters:</span></p>
@@ -986,7 +986,7 @@
 <span class="sd">    $x(t+h)=x(t)+{1 \over 6} (k_1+2k_2+2k_3+k_4)$</span>
 
 <span class="sd">    Examples:</span>
-<span class="sd">        Consider the function $-x^{3}+\sin{t}$</span>
+<span class="sd">            Consider the function $func(x,t) = -x^{3}+\sin{t}$</span>
 <span class="sd">        &gt;&gt;&gt; rk4(func,0.0,np,linspace(0.0,10.0,20.0)</span>
 <span class="sd">        [ 0.          0.13505937  0.48487586  0.81979626  0.93102462  0.88144889</span>
 <span class="sd">        0.72370945  0.46026479  0.06848691 -0.42773679 -0.78084333 -0.83096351</span>
