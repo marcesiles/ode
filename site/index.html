@@ -200,6 +200,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#euler-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Euler Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runge-kutta-method-of-order-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runge-Kutta Method of Order 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runge-kutta-method-of-order-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runge-Kutta Method of Order 4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-layout" class="md-nav__link">
     <span class="md-ellipsis">
       Project layout
@@ -263,6 +290,33 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#euler-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      Euler Method
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runge-kutta-method-of-order-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runge-Kutta Method of Order 2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#runge-kutta-method-of-order-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Runge-Kutta Method of Order 4
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#project-layout" class="md-nav__link">
     <span class="md-ellipsis">
       Project layout
@@ -287,12 +341,90 @@
 
 
 <h1 id="welcome-to-ode">Welcome to ODE</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a></p>
-<p>si esto no funciona me doy de baja de computacional</p>
+<p>In this project, we delve into the exploration of three distinct numerical methods for solving differential equations. THe methods we will examine are:</p>
+<ol>
+<li><strong>Euler Method</strong>: A straightforward and fundamental approach, providing a basic understanding of numerical integration techniques.</li>
+<li><strong>Runge-Kutta Method of Order 2</strong>: An intermediate method that offers improved accuracy over the Euler method by considering additional points within the interval of interest.</li>
+<li><strong>Runge-Kutta Method of Order 4</strong>: Highly accurate and widely used method, balancing computational efficiency and precision by averaging the slopes at multiple points of interest.</li>
+</ol>
+<p>Through this exploration, we aim to undestand the principles, implementation and comparative effectiveness of these numerical methods when it comes to solve ordinary differential equations.</p>
+<h2 id="euler-method">Euler Method</h2>
+<p>The Euler method is a straightforward approach based on the Taylor expansion of the function <span class="arithmatex">\(x(t)\)</span>. The expansion is expressed as:</p>
+<div class="arithmatex">\[
+\text{Taylor Expansion} \Rightarrow x(t+h) = x(t) + h\frac{dx}{dt} + \overbrace{\frac{h^2}{2} \frac{d^2x}{dt^2}}^{\varepsilon} + \mathcal{O}(h^3).
+\]</div>
+<p>To advance in time by a step <span class="arithmatex">\(h\)</span>, which we assume to be sufficiently small, we use the equation:</p>
+<div class="arithmatex">\[
+\boxed{x(t + h) = x(t) + h\cdot f(x,t).}
+\]</div>
+<p>The error associated with this approximation is related to the number of time steps <span class="arithmatex">\(N\)</span>. This associated error can be estimated as follows:</p>
+<div class="arithmatex">\[\begin{align}
+\sum\varepsilon = \sum_{k=0}^{N-1}\frac{h^2}{2}\left. \frac{d^2x}{dt^2} \right|{x_{k}, t_{k}} = \frac{h}{2}\sum{k=0}^{N-1}h\left.\frac{df}{dt}\right|{x_{k}, t_{k}}
+\\
+\approx \frac{h}2\int_{a}^b\frac{df}{dt}d t = \frac{h}{2}\left[f_{b} - f_{a}\right].
+\end{align}\]</div>
+<p>In this equation, we assume taking <span class="arithmatex">\(N = (b-a)/h\)</span> time steps to reach the final point. Therefore, the total approximation error depends linearly on <span class="arithmatex">\(h\)</span> multiplied by the integration interval.</p>
+<p>For some applications, this accuracy is sufficient; for others, a better approximation is needed. The Euler method algorithm follows these steps:</p>
+<ol>
+<li>Start with <span class="arithmatex">\(t = t_{0}\)</span>, <span class="arithmatex">\(x = x_{0}\)</span>.</li>
+<li>Discretize time into equally spaced steps with spacing <span class="arithmatex">\(h\)</span>, denoting each time point as <span class="arithmatex">\(t_{i}\)</span>.</li>
+<li>For each time point, find <span class="arithmatex">\(x\)</span> using the result of the previous iteration: <span class="arithmatex">\(x_{i} = x_{i-1} + hf(x_{i-1}, t_{i-1})\)</span>.</li>
+</ol>
+<h2 id="runge-kutta-method-of-order-2">Runge-Kutta Method of Order 2</h2>
+<p>The RK2 method improves upon the Euler method by using the midpoint for evaluation, leading to better accuracy for the same step size <span class="arithmatex">\(h\)</span>. Instead of evaluating the derivative at point <span class="arithmatex">\(t\)</span>, as in Euler's method, RK2 evaluates it at the midpoint <span class="arithmatex">\(t + h/2\)</span>.</p>
+<p>By applying the Taylor series around the midpoint <span class="arithmatex">\(t + h/2\)</span>, we derive:</p>
+<div class="arithmatex">\[
+x(t + h) = x\left(t + \frac{h}{2}\right) + \frac{h}{2}\left(\frac{{\rm d}x}{{\rm d}t}\right)_{t+h/2} + \frac{h^2}{8}\left(\frac{{\rm d}^2x}{{\rm d}t^2}\right)_{t+h/2} + \mathcal{O}(h^3).
+\]</div>
+<p>Similarly, for <span class="arithmatex">\(x(t)\)</span>, we have:</p>
+<div class="arithmatex">\[
+x(t) = x\left(t + \frac{h}{2}\right) - \frac{h}{2}\left(\frac{dx}{dt}\right)_{t+h/2} + \frac{h^2}{8}\left(\frac{d^2x}{dt^2}\right)_{t+h/2} + \mathcal{O}(h^3).
+\]</div>
+<p>Subtracting these equations gives:</p>
+<div class="arithmatex">\[
+x(t + h) = x(t) + h\left(\frac{dx}{dt}\right)_{t+h/2} + \mathcal{O}(h^3).
+\]</div>
+<p>Thus, the RK2 method is:</p>
+<div class="arithmatex">\[
+\boxed{x(t + h) = x(t) + hf\left(x(t + h/2), t + h/2\right) + \mathcal{O}(h^3)}.
+\]</div>
+<p>The second-order term disappears, and the error is <span class="arithmatex">\(\mathcal{O}(h^3)\)</span>, enhancing computational efficiency.</p>
+<p>However, we need the function value at the midpoint <span class="arithmatex">\(x(t + h/2)\)</span>, which is approximated using Euler's method with a half-step <span class="arithmatex">\(h/2\)</span>:</p>
+<div class="arithmatex">\[
+x(t + h/2) \approx x(t) + \frac{h}{2}f(x,t).
+\]</div>
+<p>Therefore, RK2 equations are:</p>
+<ol>
+<li>Compute <span class="arithmatex">\(k_{1} = hf(x,t)\)</span>.</li>
+<li>Compute <span class="arithmatex">\(k_{2} = hf\left(x + \frac{k_{1}}{2}, t + \frac{h}{2}\right)\)</span>.</li>
+<li>Update <span class="arithmatex">\(x(t + h) = x(t) + k_{2}\)</span>.</li>
+</ol>
+<p>The local approximation error per step is <span class="arithmatex">\(\mathcal{O}(h^3)\)</span>, while the global error is <span class="arithmatex">\(\mathcal{O}(h^2)\)</span>, ensuring a more accurate solution than the Euler method for the same step size.</p>
+<h2 id="runge-kutta-method-of-order-4">Runge-Kutta Method of Order 4</h2>
+<p>The RK4 method extends RK2 by using more points between <span class="arithmatex">\(x(t)\)</span> and <span class="arithmatex">\(x(t + h)\)</span> through Taylor expansions, providing a better balance between complexity and accuracy. It is the most widely used method for solving ODEs due to its efficiency and precision. For most applications, the RK4 method is the de facto standard due to its ease of implementation and accurate results. The local approximation error per step is <span class="arithmatex">\(\mathcal{O}(h^5)\)</span>, while the global error is approximately <span class="arithmatex">\(\mathcal{O}(h^4)\)</span>, providing a precise and efficient solution.</p>
+<p>We can set the RK4 algorithm such that:</p>
+<ol>
+<li>
+<p><strong>Calculate the slopes:</strong></p>
+<ul>
+<li><span class="arithmatex">\(k_{1} = hf(x, t)\)</span></li>
+<li><span class="arithmatex">\(k_{2} = hf\left(x + \frac{k_{1}}{2}, t + \frac{h}{2}\right)\)</span></li>
+<li><span class="arithmatex">\(k_{3} = hf\left(x + \frac{k_{2}}{2}, t + \frac{h}{2}\right)\)</span></li>
+<li><span class="arithmatex">\(k_{4} = hf\left(x + k_{3}, t + h\right)\)</span></li>
+</ul>
+</li>
+<li>
+<p><strong>Update the function value:</strong></p>
+<ul>
+<li><span class="arithmatex">\(x(t + h) = x(t) + \frac{1}{6}(k_{1} + 2k_{2} + 2k_{3} + k_{4})\)</span></li>
+</ul>
+</li>
+</ol>
+<p>This method balances computational efficiency and accuracy, making it a preferred choice for solving differential equations in various scientific and engineering applications.</p>
 <h2 id="project-layout">Project layout</h2>
 <pre><code>mkdocs.yml    # The configuration file.
 docs/
-    index.md  # The documentation homepage.
+index.md  # The documentation homepage.
 ODE/
     ODE.py   # The code documented 
     __init__.py # Little description
