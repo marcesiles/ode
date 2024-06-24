@@ -25,7 +25,7 @@ $$
 The error associated with this approximation is related to the number of time steps $N$. This associated error can be estimated as follows:
 
 \begin{align}
-\sum\varepsilon = \sum_{k=0}^{N-1}\frac{h^2}{2}\left. \frac{d^2x}{dt^2} \right|{x_{k}, t_{k}} = \frac{h}{2}\sum{k=0}^{N-1}h\left.\frac{df}{dt}\right|_{x_{k}, t_{k}}
+\sum\varepsilon = \sum_{k=0}^{N-1}\frac{h^2}{2}\left. \frac{d^2x}{dt^2} \right|{x_{k}, t_{k}} = \frac{h}{2}\sum)_{k=0}^{N-1}h\left.\frac{df}{dt}\right|_{x_{k}, t_{k}}
 \\
 \approx \frac{h}2\int_{a}^b\frac{df}{dt}d t = \frac{h}{2}\left[f_{b} - f_{a}\right].
 \end{align}
