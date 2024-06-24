@@ -1,6 +1,6 @@
 # Welcome to ODE
 
-In this project, we delve into the exploration of three distinct numerical methods for solving differential equations. THe methods we will examine are:
+In this project, we delve into the exploration of three distinct numerical methods for solving differential equations. The methods we will examine are:
 
 1. **Euler Method**: A straightforward and fundamental approach, providing a basic understanding of numerical integration techniques.
 2. **Runge-Kutta Method of Order 2**: An intermediate method that offers improved accuracy over the Euler method by considering additional points within the interval of interest.
